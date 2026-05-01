@@ -1,0 +1,20 @@
+- name: AWX Demo
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Create demo file
+      copy:
+        content: "Configured by AWX"
+        dest: /tmp/demo.txt
